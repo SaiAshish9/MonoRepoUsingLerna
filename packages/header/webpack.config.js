@@ -5,7 +5,9 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'index.js',
+    library: 'HeaderApp',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -26,8 +28,12 @@ module.exports = {
       template: './public/index.html',
     }),
   ],
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+  },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'dist'),
     compress: true,
     port: 3000,
   },
